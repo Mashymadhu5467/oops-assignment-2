@@ -1,0 +1,164 @@
+1.ANS:  
+________
+class Vehicle:
+    def __init__(self, name_of_vehicle, max_speed, average_of_vehicle):
+        self.name_of_vehicle = name_of_vehicle
+        self.max_speed = max_speed
+        self.average_of_vehicle = average_of_vehicle
+
+    def display_info(self):
+        return (f"Vehicle Name: {self.name_of_vehicle}\n"
+                f"Max Speed: {self.max_speed} km/h\n"
+                f"Average: {self.average_of_vehicle} km/l")
+
+# Example usage
+vehicle = Vehicle("Car", 200, 15)
+print(vehicle.display_info())
+
+
+2.ANS:
+__________
+class Vehicle:
+    def __init__(self, name_of_vehicle, max_speed, average_of_vehicle):
+        self.name_of_vehicle = name_of_vehicle
+        self.max_speed = max_speed
+        self.average_of_vehicle = average_of_vehicle
+
+    def display_info(self):
+        return (f"Vehicle Name: {self.name_of_vehicle}\n"
+                f"Max Speed: {self.max_speed} km/h\n"
+                f"Average: {self.average_of_vehicle} km/l")
+
+class Car(Vehicle):
+    def seating_capacity(self, capacity):
+        return f"The seating capacity of {self.name_of_vehicle} is {capacity} passengers."
+
+# Example usage
+car = Car("Car", 200, 15)
+print(car.display_info())
+print(car.seating_capacity(5))
+
+3.ANS:
+_________
+Multiple inheritance is a feature in object-oriented programming where a class can inherit attributes and methods from more than one parent class. This allows a child class to inherit features from multiple classes.
+
+class Engine:
+    def __init__(self, engine_type):
+        self.engine_type = engine_type
+
+    def display_engine_info(self):
+        return f"Engine Type: {self.engine_type}"
+
+class Body:
+    def __init__(self, body_type):
+        self.body_type = body_type
+
+    def display_body_info(self):
+        return f"Body Type: {self.body_type}"
+
+class Car(Engine, Body):
+    def __init__(self, name_of_vehicle, max_speed, average_of_vehicle, engine_type, body_type):
+        Engine.__init__(self, engine_type)
+        Body.__init__(self, body_type)
+        self.name_of_vehicle = name_of_vehicle
+        self.max_speed = max_speed
+        self.average_of_vehicle = average_of_vehicle
+
+    def display_info(self):
+        return (f"Vehicle Name: {self.name_of_vehicle}\n"
+                f"Max Speed: {self.max_speed} km/h\n"
+                f"Average: {self.average_of_vehicle} km/l\n"
+                f"{self.display_engine_info()}\n"
+                f"{self.display_body_info()}")
+
+# Example usage
+car = Car("Car", 200, 15, "V8", "Sedan")
+print(car.display_info())
+
+
+4.ANS:
+__________
+Getters and setters in Python are methods used to access and modify the private attributes of a class. They provide a way to control access to the attributes, ensuring encapsulation and allowing validation or processing when getting or setting a value.
+
+Here's an example demonstrating a class with getter and setter methods:
+
+class Person:
+    def __init__(self, name, age):
+        self._name = name
+        self._age = age
+
+    # Getter method for name
+    @property
+    def name(self):
+        return self._name
+
+    # Setter method for name
+    @name.setter
+    def name(self, value):
+        if not isinstance(value, str):
+            raise ValueError("Name must be a string")
+        self._name = value
+
+    # Getter method for age
+    @property
+    def age(self):
+        return self._age
+
+    # Setter method for age
+    @age.setter
+    def age(self, value):
+        if not isinstance(value, int) or value < 0:
+            raise ValueError("Age must be a positive integer")
+        self._age = value
+
+# Example usage
+person = Person("Alice", 30)
+
+# Using the getter method
+print(person.name)  # Output: Alice
+print(person.age)   # Output: 30
+
+# Using the setter method
+person.name = "Bob"
+person.age = 25
+
+print(person.name)  # Output: Bob
+print(person.age)   # Output: 25
+
+# Trying to set invalid values
+try:
+    person.name = 123  # Raises ValueError: Name must be a string
+except ValueError as e:
+    print(e)
+
+try:
+    person.age = -5  # Raises ValueError: Age must be a positive integer
+except ValueError as e:
+    print(e)
+
+
+5.ANS:
+__________
+Method overriding in Python occurs when a subclass provides a specific implementation of a method that is already defined in its superclass. The subclass's method overrides the superclass's method, meaning that when the method is called on an instance of the subclass, the subclass's version of the method is executed instead of the superclass's version.
+
+class Animal:
+    def sound(self):
+        return "Some generic animal sound"
+
+class Dog(Animal):
+    def sound(self):
+        return "Bark"
+
+class Cat(Animal):
+    def sound(self):
+        return "Meow"
+
+# Example usage
+generic_animal = Animal()
+dog = Dog()
+cat = Cat()
+
+print(generic_animal.sound())  # Output: Some generic animal sound
+print(dog.sound())             # Output: Bark
+print(cat.sound())             # Output: Meow
+
